@@ -33,7 +33,7 @@ public class AdminService {
 
 	@PreAuthorize("hasRole('ADMIN')")
 	public Page<UserEntity> getUsers(Pageable pageable) {
-		return userRepository.findAll(pageable);
+			return userRepository.loadUserWithoutPassword(pageable);
 	}
 
 	@PreAuthorize("hasRole('ADMIN')")
