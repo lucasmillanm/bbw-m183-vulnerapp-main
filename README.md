@@ -1,6 +1,6 @@
-# Vulner App - Spring Boot Application
+# Vulner App
 
-This is a vulnerable Spring Boot application that demonstrates various security vulnerabilities and their corresponding mitigations. The application is designed to fulfill the following requirements:
+This is VulnerApp, this is my beautiful creation - Lucas Millan Miles
 
 # Security Features
 
