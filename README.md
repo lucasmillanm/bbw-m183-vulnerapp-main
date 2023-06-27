@@ -6,7 +6,7 @@ This is VulnerApp, this is my beautiful creation - Lucas Millan Miles
 
 ### 1. Usage of Correct REST Verbs
 
-The application follows the RESTful design principles and utilizes the appropriate HTTP verbs (GET, POST, PUT, DELETE) for performing corresponding operations on resources.
+The application follows the RESTful design principles and utilizes the appropriate HTTP verbs (GET, POST, DELETE) for performing corresponding operations on resources.
 
 ### 2. Authentication - BasicAuth
 
