@@ -32,9 +32,11 @@ The application implements input validation for REST endpoints and database oper
 
 ## What's missing
 
-My Code is still vulnerable to a lot of attacks, for example you could still enter a <script> tag in the body of the Blog.
+While the application has implemented various security measures, there are still potential vulnerabilities present. For example, the application is vulnerable to cross-site scripting (XSS) attacks if user input is not properly sanitized before displaying it in the application.
+Cross-Site Request Forgery (CSRF): Although CSRF protection has been implemented, further measures can be taken to strengthen it. The application should generate and validate unique tokens for each user session or request to ensure that requests originated from the same site and are not forged by malicious entities.
 
-## Improvements
+# UPDATE: NEW FEATURES AND FIXES
 
-I could have invested more times with the tests, since I don't really have any. The app is not perfect, but I feel like I've still done a good job.
-I would grade this project a solid 4.9
+I fixed the @GetMapping on the deleteUser() => I changed it to @DeleteMapping.
+I Added a existsByUsername in the userRepository. This helps me make more useful user requests. For example, First I check if the username already exists, and if it already exists, then it won't create a new user with the same username. Same with the deleting of a user. If the user is non-existent, the deleting operation won't be executed.
+Implemented tests to enable easier and more comprehensive testing of the application, ensuring its functionality and security.
