@@ -38,5 +38,5 @@ Cross-Site Request Forgery (CSRF): Although CSRF protection has been implemented
 # UPDATE: NEW FEATURES AND FIXES
 
 I fixed the @GetMapping on the deleteUser() => I changed it to @DeleteMapping.
-I Added a existsByUsername in the userRepository. This helps me make more useful user requests. For example, First I check if the username already exists, and if it already exists, then it won't create a new user with the same username. Same with the deleting of a user. If the user is non-existent, the deleting operation won't be executed.
-Implemented tests to enable easier and more comprehensive testing of the application, ensuring its functionality and security.
+I added an existsByUsername method in the userRepository. This enhancement enables more efficient user requests by checking if a username already exists before creating a new user. The existence of the user is checked to avoid executing a false operation like deleting a non-existent user. These checks enhance data integrity and prevent potential conflicts or errors.
+I also implemented tests to enable easier and more comprehensive testing of the application's functionality and security. Testing plays a crucial role in identifying and fixing issues, ensuring that the application performs as expected and meets the desired security standards. By incorporating tests, the development process becomes more reliable, and potential vulnerabilities or bugs can be detected early, reducing the risk of security breaches or functional inconsistencies.
