@@ -15,4 +15,6 @@ public interface UserRepository extends JpaRepository<UserEntity, String> {
 
   @Query("SELECT u.username, u.fullname, u.role FROM UserEntity u")
   Page<UserEntity> loadUserWithoutPassword(Pageable pageable);
+
+  boolean existsByUsername(String username);
 }
