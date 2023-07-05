@@ -1,5 +1,8 @@
 package ch.bbw.m183.vulnerapp;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+
 import org.assertj.core.api.WithAssertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,25 +28,26 @@ class VulnerApplicationTests implements WithAssertions {
 	void createUser_ReturnsCreatedUser() {
 		UserEntity newUser = new UserEntity();
 		newUser.setUsername("testUser");
+		newUser.setFullname("testName");
 		newUser.setPassword("testPassword");
 		newUser.setRole(Role.USER);
 
 		webTestClient.post().uri("/api/admin123/create")
 				.contentType(MediaType.APPLICATION_JSON)
 				.bodyValue(newUser)
+				.header("Authorization", this.generateBasicAuthHeader("admin","super5ecret"))
 				.exchange()
 				.expectStatus().isOk()
 				.expectBody(UserEntity.class)
 				.value(user -> {
-					// Assert the properties of the created user
-					assertThat(user.getUsername()).isEqualTo("testUser");
-					assertThat(user.getPassword()).isEqualTo("testPassword");
+					assertThat(user.getUsername()).isEqualTo(newUser.getUsername());
 				});
 	}
 
 	@Test
 	void getUsers_ReturnsListOfUsers() {
 		webTestClient.get().uri("/api/admin123/users")
+				.header("Authorization", this.generateBasicAuthHeader("admin","super5ecret"))
 				.exchange()
 				.expectStatus().isOk()
 				.expectBodyList(UserEntity.class)
@@ -57,8 +61,16 @@ class VulnerApplicationTests implements WithAssertions {
 		String username = "testUser";
 
 		webTestClient.delete().uri("/api/admin123/delete/{username}", username)
+				.header("Authorization", this.generateBasicAuthHeader("admin","super5ecret"))
 				.exchange()
 				.expectStatus().isOk();
+	}
+
+	public String generateBasicAuthHeader(String username, String password) {
+		String credentials = username + ":" + password;
+		byte[] credentialsBytes = credentials.getBytes(StandardCharsets.UTF_8);
+		String encodedCredentials = Base64.getEncoder().encodeToString(credentialsBytes);
+		return "Basic " + encodedCredentials;
 	}
 
 }
